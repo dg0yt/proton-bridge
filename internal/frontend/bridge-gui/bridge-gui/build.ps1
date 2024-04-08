@@ -88,6 +88,11 @@ if ($null -eq $bridgeBuildEnv)
 
 git submodule update --init --recursive $vcpkgRoot
 . $vcpkgBootstrap -disableMetrics
+
+$cmakeExe=$(Get-Command cmake).source
+Write-host "xxx CMake found here : $cmakeExe"
+Write-host "xxx PATH : $env:PATH"
+
 . $vcpkgExe install sentry-native:x64-windows grpc:x64-windows --clean-after-build
 . $vcpkgExe upgrade --no-dry-run
 . $cmakeExe -G "Visual Studio 17 2022" -DCMAKE_BUILD_TYPE="$buildConfig" `

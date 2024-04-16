@@ -93,6 +93,7 @@ $cmakeExe=$(Get-Command cmake).source
 Write-host "xxx CMake found here : $cmakeExe"
 Write-host "xxx PATH : $env:PATH"
 
+. $vcpkgExe install abseil:x64-windows --cmake-args=--trace-expand
 . $vcpkgExe install sentry-native:x64-windows grpc:x64-windows --clean-after-build
 . $vcpkgExe upgrade --no-dry-run
 . $cmakeExe -G "Visual Studio 17 2022" -DCMAKE_BUILD_TYPE="$buildConfig" `
